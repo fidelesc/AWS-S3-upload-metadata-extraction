@@ -21,11 +21,14 @@ Create an AWS Lambda function with the following settings:
 
 * Runtime: Python 3.7
 
-Update the lines: `bucket_out = '<output-bucket-name>'` to your output bucket name.
+Update the lines: 
+`bucket_out = '<output-bucket-name>'` to your output bucket name.
+`DynamoDB table = '<dynamodb-table-name>'` to your dynamo table name.
+`DynamoDB region = '<your-dynamordb-region>'` to your dynamo database region.
 
 Copy the code in `lambda_function.py` to the lambda function or Upload the `lambda_function.py` file to your Lambda function.
 
-Lambda Execution role: Choose an existing role with permission to read from and write to your S3 buckets. (S3FullAccess will work, but make sure you only give the correct permissions you need)
+Lambda Execution role: Choose an existing role with permission to read from and write to your S3 buckets. (S3FullAccess and AmazonDynamoDBFullAccess will work for debugging, but make sure you only give the correct permissions you need)
 
 Add the exifread dependencies to your Lambda function as a layer.
 
@@ -33,11 +36,13 @@ Add trigger event to your lambda function (example: "All object create events"),
 
 ## Usage
 
-After deploying the Lambda function, any image files uploaded to the input S3 bucket will trigger the function to extract the GPS metadata and save it to a text file in the output S3 bucket.
+After deploying the Lambda function, any files uploaded to the input S3 bucket will trigger the function to extract the GPS metadata and save it to a dynamo database, then move the file to the output S3 bucket with a new unique name.
 
 ## Notes
 
 Depending on the size of your images, you might require more timeout or allocated memory for your lambda. Make sure to setup the correct timeout and memory allocated to your function in Lambda > Functions > YourLambda > Configuration > General configuration. 
+
+You might have issues with multiple invocations per file. If that is the case, go to Lambda > Functions > YourLambda > Configuration > Asynchronous invocation > Retry attempts = 0. 
 
 ## How to create the exifread-layer for your runtime version:
 
