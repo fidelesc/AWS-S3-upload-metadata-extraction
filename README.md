@@ -1,8 +1,8 @@
 # S3 Upload Image Metadata Extractor using lambda functions
 
-This is a lambda function example on how to extract metadata from uploaded UAV images (RGB or spectral) to an S3 bucket. It checks if the file has the desired metadata and updates a database, while also copying files with metadata to another bucket (bucket_out) for later processing.
+This is a lambda function example on how to extract metadata from uploaded UAV images (RGB or spectral) to an S3 bucket. It is a example function to check if the file has the desired metadata while also copying files with metadata to another bucket (bucket_out) for later processing. This metadata could be sent to a database, or save as a file to another S3.
 
-This example (`lambda_function.py`) extracts metadata from image files in an S3 bucket, updates a database with the filenames, latitude, and longitude, and copies the files (that sucessfully extracted the desired metadata) to another S3 bucket. This example uses the ExifRead library to extract GPS coordinates from the metadata of the image files. You can modify the code to extract other metadata information you desire.
+This example (`lambda_function.py`) extracts metadata from image files in an S3 bucket, prints the filenames, latitude, and longitude, and copies the files (that sucessfully extracted the desired metadata) to another S3 bucket. This example uses the ExifRead library to extract GPS coordinates from the metadata of the image files. You can modify the code to extract other metadata information you desire.
 
 This was tested sucessfully using DJI and MicaSense sensors from UAV images.
 
