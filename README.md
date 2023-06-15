@@ -22,8 +22,11 @@ Create an AWS Lambda function with the following settings:
 * Runtime: Python 3.7
 
 Update the lines: 
+
 `bucket_out = '<output-bucket-name>'` to your output bucket name.
+
 `DynamoDB table = '<dynamodb-table-name>'` to your dynamo table name.
+
 `DynamoDB region = '<your-dynamordb-region>'` to your dynamo database region.
 
 Copy the code in `lambda_function.py` to the lambda function or Upload the `lambda_function.py` file to your Lambda function.
